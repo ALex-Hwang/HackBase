@@ -8,7 +8,7 @@
 
 ### todo
 
-- [ ] [Thrift]([Thrift: The Missing Guide (diwakergupta.github.io)](https://diwakergupta.github.io/thrift-missing-guide/#_versioning_compatibility))
+- [ ] [Thrift]([Thrift: The Missing Guide (diwakergupta.github.io)](https://diwakergupta.github.io/thrift-missing-guide/#_versioning_compatibility)
 
 目前需要考虑的问题：
 
@@ -17,7 +17,6 @@
 
 ---
 
-- [x] 
 
 ## 架构
 
