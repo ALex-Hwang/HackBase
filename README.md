@@ -1,19 +1,32 @@
 # HackBase
 
-> 浙江大学大规模信息系统构建课程作业。
+> zju大规模系统构建课程作业。
 
 ---
+
+## 6.4 更新
+
+> RIP 就連香港都禁止悼念了
+
+人员分工：
+1. lc, lxw: master, zookeeper
+2. hsy, zy: client, region server, HackDFS(这部分打算照搬minisql)
+
+
+==从今天之后，更新都在对应的文件夹中分开进行。==
+==同时更新了参考文件：lwm关于分布式minisql的pdf，具体请移步至refs==
+
 
 ## 6.1更新
 
 ### todo
 
-- [ ] [Thrift]([Thrift: The Missing Guide (diwakergupta.github.io)](https://diwakergupta.github.io/thrift-missing-guide/#_versioning_compatibility)
+- [x] [Thrift]([Thrift: The Missing Guide (diwakergupta.github.io)](https://diwakergupta.github.io/thrift-missing-guide/#_versioning_compatibility)
 
 目前需要考虑的问题：
 
-- [ ] 底层文件系统按照传统方式（行储存）还是按照`HDFS`的列式储存
-- [ ] `Region Server`这部分使用`C++`还是`java`
+- [x] 底层文件系统按照传统方式（行储存）还是按照`HDFS`的列式储存
+- [x] `Region Server`这部分使用`C++`还是`java`
 
 ---
 
