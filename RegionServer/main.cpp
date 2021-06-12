@@ -7,10 +7,46 @@
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
 
+
+// minisql
+#include <iostream>
+#include "minisql/Interpreter.h"
+#include "minisql/CatalogManager.h"
+#include "minisql/RecordManager.h"
+#include "minisql/IndexManager.h"
+#include <fstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#include "minisql/API.h
+
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
 using namespace ::apache::thrift::transport;
 using namespace ::apache::thrift::server;
+
+void init()
+{
+    FILE *fp;
+    fp = fopen("Indexs", "r");
+    if (fp == NULL)
+    {
+        fp = fopen("Indexs", "w+");
+        return;
+    }
+    fclose(fp);
+}
+
+void print()
+{
+    clock_t finish = clock();
+    double duration = (double)(finish - start) / CLOCKS_PER_SEC;
+    duration *= 1000;
+    printf("now time is %2.1f milliseconds\n", duration * 1000);
+}
+
+clock_t start;
 
 class regionRPCHandler : virtual public regionRPCIf {
  public:
@@ -31,8 +67,23 @@ class regionRPCHandler : virtual public regionRPCIf {
 };
 
 int main(int argc, char **argv) {
-  int port = 9090;
-  ::std::shared_ptr<regionRPCHandler> handler(new regionRPCHandler());
+    init();
+
+    API api;
+    CatalogManager cm;
+    RecordManager rm;
+
+    api.rm = &rm;
+    api.cm = &cm;
+    IndexManager im(&api);
+
+    api.im = &im;
+    rm.api = &api;
+
+    start = 0;
+    clock_t finish;
+    int port = 9090;
+    ::std::shared_ptr<regionRPCHandler> handler(new regionRPCHandler());
   ::std::shared_ptr<TProcessor> processor(new regionRPCProcessor(handler));
   ::std::shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
   ::std::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
