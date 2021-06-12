@@ -11,11 +11,14 @@
 #include "minisql/API.h"
 
 
+
+/*
 #include "./thrift/gen-cpp/regionRPC.h"
 #include <thrift/protocol/TBinaryProtocol.h>
 #include <thrift/server/TSimpleServer.h>
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
+*/
 
 void init()
 {

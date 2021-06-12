@@ -1,4 +1,0 @@
-create table test(num1 int, num2 float, str char(20));
-insert into test values(1, 2.2, zhaoyang);
-insert into test values(2, 3.3, huang);
-create table test2(num1 int unique, num2 float, str char(20),primary key(num1));
