@@ -3,13 +3,12 @@ project(regionServer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-aux_source_directory(. DIR_SRCS)
+aux_source_directory(./minisql DIR_SRCS)
 
-add_subdirectory(minisql)
 
-add_executable(test
-        main.cpp
+add_executable(demo
+        origin.cpp
+        ${DIR_SRCS}
         )
 
-      target_link_libraries(test minisqlDependency)
 
