@@ -2,8 +2,7 @@
 //  Condition.cpp
 //  minisql
 //
-//  Created by ╣ксю╩т on 14/11/10.
-//  Copyright (c) 2014дЙ ╣ксю╩т. All rights reserved.
+
 //
 
 #include "Condition.h"

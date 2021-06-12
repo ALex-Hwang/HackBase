@@ -4,7 +4,6 @@
 //  Description: Provide functions to manage the indexs.
 //
 //  Created by xuyuhao on 14/11/14.
-//  Copyright (c) 2014Äê xuyuhao. All rights reserved.
 //
 
 #ifndef __Minisql__IndexManager__

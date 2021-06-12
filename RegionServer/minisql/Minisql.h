@@ -3,7 +3,6 @@
 //  Minisql
 //
 //  Created by xuyuhao on 14/11/2.
-//  Copyright (c) 2014Äê xuyuhao. All rights reserved.
 //
 
 #ifndef Minisql_Minisql_h

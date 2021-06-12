@@ -2,8 +2,7 @@
 //  Condition.h
 //  minisql
 //
-//  Created by ╣ксю╩т on 14/11/4.
-//  Copyright (c) 2014дЙ ╣ксю╩т. All rights reserved.
+
 //
 
 #ifndef minisql_Condition_h

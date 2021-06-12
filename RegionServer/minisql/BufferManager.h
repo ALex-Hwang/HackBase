@@ -4,7 +4,6 @@
 //  Description: Provide funtions to manage the buffers.
 //
 //  Created by xuyuhao on 14/11/1.  
-//  Copyright (c) 2014Äê xuyuhao. All rights reserved.
 //
 
 #ifndef __Minisql__BufferManager__

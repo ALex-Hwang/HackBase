@@ -2,8 +2,8 @@
 //  RecordManager.cpp
 //  minisql
 //
-//  Created by ╣ксю╩т on 14/11/5.
-//  Copyright (c) 2014дЙ ╣ксю╩т. All rights reserved.
+//  Created by О©╫О©╫О©╫О©╫О©╫О©╫ on 14/11/5.
+//  Copyright (c) 2014О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫. All rights reserved.
 //
 
 #include <iostream>

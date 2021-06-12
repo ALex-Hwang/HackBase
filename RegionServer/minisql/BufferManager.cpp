@@ -3,7 +3,7 @@
 //  Minisql
 //
 //  Created by xuyuhao on 14/11/1.
-//  Copyright (c) 2014Äê xuyuhao. All rights reserved.
+//  Copyright (c) 2014å¹´ xuyuhao. All rights reserved.
 //
 
 #include "BufferManager.h"
@@ -172,7 +172,7 @@ fileNode* BufferManager::getFile(const char * fileName, bool if_pin)
 	}
 	if (strlen(fileName) + 1 > MAX_FILE_NAME)
 	{
-		printf("ÎÄ¼þÃû³¤¶È¹ý³¤£¬×î¸ß²»ÄÜ³¬¹ý%d\n", MAX_FILE_NAME);
+		printf("æ–‡ä»¶åé•¿åº¦è¿‡é•¿ï¼Œæœ€é«˜ä¸èƒ½è¶…è¿‡%d\n", MAX_FILE_NAME);
 		exit(3);
 	}
 	strncpy(ftmp->fileName, fileName, MAX_FILE_NAME);
@@ -272,7 +272,7 @@ blockNode* BufferManager::getBlock(fileNode * file, blockNode *position, bool if
 	set_pin(*btmp, if_pin);
 	if (strlen(fileName) + 1 > MAX_FILE_NAME)
 	{
-		printf("ÎÄ¼þÃû³¤¶È¹ý³¤£¬×î¸ß²»ÄÜ³¬¹ý%d\n", MAX_FILE_NAME);
+		printf("æ–‡ä»¶åé•¿åº¦è¿‡é•¿ï¼Œæœ€é«˜ä¸èƒ½è¶…è¿‡%d\n", MAX_FILE_NAME);
 		exit(3);
 	}
 	strncpy(btmp->fileName, fileName, MAX_FILE_NAME);

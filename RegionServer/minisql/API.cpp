@@ -2,8 +2,8 @@
 //  API.cpp
 //  minisql
 //
-//  Created by µËÓÀ»Ô on 14/11/5.
-//  Copyright (c) 2014Äê µËÓÀ»Ô. All rights reserved.
+//  Created by é‚“æ°¸è¾‰ on 14/11/5.
+//  Copyright (c) 2014å¹´ é‚“æ°¸è¾‰. All rights reserved.
 //
 
 #include "API.h"
@@ -726,7 +726,7 @@ void API::allIndexAddressInfoGet(vector<IndexInfo> *indexNameVector)
 
 /**
  *
- * get the vector of a attribute¡®s type in a table
+ * get the vector of a attributeâ€˜s type in a table
  * @param tableName:  name of table
  * @param attributeNameVector:  a point to vector of attributeType(which would change)
  */
@@ -775,7 +775,7 @@ void API::indexInsert(string indexName, char* contentBegin, int type, int blockO
 	string content = "";
 	stringstream tmp;
 	//if the attribute has index
-	///ÕâÀï´«*attributeVector)[i].indexÕâ¸öindexµÄÃû×Ö, blockOffset,»¹ÓĞÖµ
+	///è¿™é‡Œä¼ *attributeVector)[i].indexè¿™ä¸ªindexçš„åå­—, blockOffset,è¿˜æœ‰å€¼
 	if (type == Attribute::TYPE_INT)
 	{
 		int value = *((int*)contentBegin);
@@ -820,7 +820,7 @@ void API::recordIndexDelete(char* recordBegin, int recordSize, vector<Attribute>
 		if ((*attributeVector)[i].index != "")
 		{
 			//if the attribute has index
-			///ÕâÀï´«*attributeVector)[i].indexÕâ¸öindexµÄÃû×Ö, blockOffset,»¹ÓĞÖµ
+			///è¿™é‡Œä¼ *attributeVector)[i].indexè¿™ä¸ªindexçš„åå­—, blockOffset,è¿˜æœ‰å€¼
 			if (type == Attribute::TYPE_INT)
 			{
 				int value = *((int*)contentBegin);

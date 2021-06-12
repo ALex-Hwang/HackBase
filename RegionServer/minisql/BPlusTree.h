@@ -4,7 +4,7 @@
 //  Description: The basic b+ tree implement of template.
 //
 //  Created by xuyuhao on 14/11/8.
-//  Copyright (c) 2014Äê xuyuhao. All rights reserved.
+//  Copyright (c) 2014?¨º xuyuhao. All rights reserved.
 //
 
 #ifndef __Minisql__BPlusTree__
