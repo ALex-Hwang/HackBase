@@ -61,7 +61,10 @@ def zookeeperChecker():
 # description: parse the data from the zookeeper
 # return ip, port
 def parseAddress(rawData):
-    data = rawData.decode('utf-8')
+    if isinstance(rawData, str):
+        data = rawData
+    else:
+        data = rawData.decode('utf-8')
     ipAndport = data.split(':')
     return ipAndport[0], ipAndport[1]
 
@@ -76,10 +79,10 @@ def createTable(tableName):
     client = masterSvc.Client(protocol)
     transport.open()
 
-    msg = client.createTable(tableName)
+    ip = client.createTable(tableName)
 
     transport.close()
-    return msg
+    return ip
 
 # description: api provided to interpreter, connects to the master
 # return the result of the drop
@@ -92,13 +95,16 @@ def dropTable(tableName):
     client = masterSvc.Client(protocol)
     transport.open()
 
-    msg = client.dropTable(tableName)
+    msg = client.deleteTable(tableName)
 
     transport.close()
     return msg
 
 def command(address, command):
 
+    if address == None:
+        return None
+    
     ip, port = parseAddress(address)
 
     transport = TSocket.TSocket(ip, port)

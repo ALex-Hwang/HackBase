@@ -1,5 +1,3 @@
-from cilent_master import masterSvc
-from cilent_master.ttypes import *
 from thrift import Thrift
 from thrift.transport import TSocket
 from thrift.transport import TTransport
@@ -7,6 +5,7 @@ from thrift.protocol import TBinaryProtocol
 import time
 from execption import MiniSQLError, MiniSQLSyntaxError
 from enum import Enum
+from utilis import *
 
 
 class MiniSQLType(Enum):
@@ -65,62 +64,65 @@ def judge_type(query):
 
 
 def interpret(query):
-    print(query)
     type = judge_type(query)
     queryarr = query.split()
+    res = None
     if type == MiniSQLType.CREATE_TABLE:
         print(query)
         name = queryarr[2]
         name = name[:name.index("(")]
-        res = createTable(name)
-        return 0
+        ip = createTable(name)
+        if ip == "error":
+            res = "error"
+        else:
+            res = command(ip, query)
     elif type == MiniSQLType.CREATE_INDEX:
         name = queryarr[4]
         name = name[:name.index("(")]
         ip = whereTable(name)
         res = command(ip, query)
-        return 0
     elif type == MiniSQLType.INSERT:
         name = queryarr[2]
         ip = whereTable(name)
         res = command(ip, query)
-        return 0
     elif type == MiniSQLType.SELECT:
         name = queryarr[3]
-        name = name[:name.index(";")]
+        if name[-1] == ';':
+            name = name[:name.index(";")]
         ip = whereTable(name)
         res = command(ip, query)
-        return 0
     elif type == MiniSQLType.DELETE:
         name = queryarr[2]
         name = name[:name.index(";")]
         ip = whereTable(name)
         res = command(ip, query)
-        return 0
     elif type == MiniSQLType.DROP_INDEX:
         name = queryarr[2]
         name = name[:name.index(";")]
         ip = whereTable(name)
         res = command(ip, query)
-        return 0
     elif type == MiniSQLType.DROP_TABLE:
         name = queryarr[2]
-        name = name[:name.index("(")]
-        res = dropTable(name)
-        return 0
+        name = name[:name.index(";")]
+        ip = dropTable(name)
+        if ip == "error":
+            res = "error"
+        else:
+            res = command(ip, query)
     elif type == MiniSQLType.QUIT:
         return 1
     elif type == MiniSQLType.EXECFILE:
         name = queryarr[1]
         name = name[:name.index(";")]
         execfile(name)
-        return 0
+    if res == None:
+        print(res)
+    return 0
 
 
 if __name__ == "__main__":
     query = ''
     print("*******************welcome to use our minisql**********************")
-    print("*************** author: huang & liu & li & zhao ********************")
     fileread = 0
     filerecovery = 0
     status = 0
@@ -132,14 +134,10 @@ if __name__ == "__main__":
         if cmd and cmd[-1] == ';':
             # print(query)
             try:
-                start = time.clock()
                 status = interpret(query)
-                end = time.clock()
                 if status == 1:
                     break
             except MiniSQLError as e:
-                end = start
                 print(e)
             query = ''
 
-            print('use time {}s'.format(end - start))
