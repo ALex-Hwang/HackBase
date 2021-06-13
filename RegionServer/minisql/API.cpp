@@ -1,10 +1,4 @@
-//
-//  API.cpp
-//  minisql
-//
-//  Created by 邓永辉 on 14/11/5.
-//  Copyright (c) 2014年 邓永辉. All rights reserved.
-//
+
 
 #include "API.h"
 #include "RecordManager.h"
@@ -52,6 +46,8 @@ void API::tableDrop(string tableName)
 	{
 		//delete a table information
 		cm->dropTable(tableName);
+		cm->bm.writtenBackToDiskAll();
+		rm->bm.writtenBackToDiskAll();
 		printf("Drop table %s successfully\n", tableName.c_str());
 		ifstream done;
 		string donefile = "done.txt";
@@ -96,6 +92,8 @@ void API::indexDrop(string indexName, int thetype)
 		}
 
 		if (thetype == 0) {
+			cm->bm.writtenBackToDiskAll();
+			rm->bm.writtenBackToDiskAll();
 			FILE *fp;
 			string log = "log.txt";
 			string content = "";
@@ -205,6 +203,8 @@ void API::indexCreate(string indexName, string tableName, string attributeName, 
 		rm->indexRecordAllAlreadyInsert(tableName, indexName);
 		printf("Create index %s successfully\n", indexName.c_str());
 		if (thetype == 0) {
+			cm->bm.writtenBackToDiskAll();
+			rm->bm.writtenBackToDiskAll();
 			ifstream done;
 			string donefile = "done.txt";
 			string s;
@@ -295,11 +295,8 @@ void API::tableCreate(string tableName, vector<Attribute>* attributeVector, stri
 		}
 		//CatalogManager to create a table information
 		cm->addTable(tableName, attributeVector, primaryKeyName, primaryKeyLocation);
-		/*FILE *fp1;
-		string title = "done.txt";
-		string done = "";
-		fp1 = fopen(title.c_str(), "w+");
-		string done = "";*/
+		cm->bm.writtenBackToDiskAll();
+		rm->bm.writtenBackToDiskAll();
 		printf("Create table %s successfully\n", tableName.c_str());
 		ifstream done;
 		string donefile = "done.txt";
@@ -515,6 +512,8 @@ void API::recordInsert(string tableName, vector<string>* recordContent)
 		}
 		recordIndexInsert(recordString, recordSize, &attributeVector, blockOffset);
 		cm->insertRecord(tableName, 1);
+		cm->bm.writtenBackToDiskAll();
+		rm->bm.writtenBackToDiskAll();
 		printf("insert record into table %s successful\n", tableName.c_str());
 		ifstream done;
 		string donefile = "done.txt";
@@ -644,6 +643,8 @@ void API::recordDelete(string tableName, vector<Condition>* conditionVector)
 	}
 	//delete the number of record in in the table
 	cm->deleteValue(tableName, num);
+	cm->bm.writtenBackToDiskAll();
+	rm->bm.writtenBackToDiskAll();
 	printf("delete %d record in table %s\n", num, tableName.c_str());
 	ifstream done;
 	string donefile = "done.txt";
