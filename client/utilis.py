@@ -4,6 +4,7 @@ import glob
 sys.path.append('gen-py')
 
 from masterService import masterSvc
+from regionService import regionSvc
 from thrift import Thrift
 from thrift.transport import TSocket
 from thrift.transport import TTransport
@@ -96,7 +97,22 @@ def dropTable(tableName):
     transport.close()
     return msg
 
+def command(address, command):
+
+    ip, port = parseAddress(address)
+
+    transport = TSocket.TSocket(ip, port)
+    transport = TTransport.TBufferedTransport(transport)
+    protocol = TBinaryProtocol.TBinaryProtocol(transport)
+    client = regionSvc.Client(protocol)
+    transport.open()
+
+    msg = client.sendCommand(command)
+    transport.close()
+    return msg
+
+
 if __name__ == "__main__":
-    createTable("test")
+    print(command(1, 's'))
 
 
