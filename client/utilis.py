@@ -57,17 +57,46 @@ def zookeeperChecker():
     zk.stop()
     return nodes
 
+# description: parse the data from the zookeeper
+# return ip, port
+def parseAddress(rawData):
+    data = rawData.decode('utf-8')
+    ipAndport = data.split(':')
+    return ipAndport[0], ipAndport[1]
+
 # description: api provided to interpreter, connects to the master
 # return the result of the creation
 def createTable(tableName):
-    print(findMaster())
+    ip, port = parseAddress(findMaster())
+
+    transport = TSocket.TSocket(ip, port)
+    transport = TTransport.TBufferedTransport(transport)
+    protocol = TBinaryProtocol.TBinaryProtocol(transport)
+    client = masterSvc.Client(protocol)
+    transport.open()
+
+    msg = client.createTable(tableName)
+
+    transport.close()
+    return msg
 
 # description: api provided to interpreter, connects to the master
 # return the result of the drop
 def dropTable(tableName):
-    return None
+    ip, port = parseAddress(findMaster())
+
+    transport = TSocket.TSocket(ip, port)
+    transport = TTransport.TBufferedTransport(transport)
+    protocol = TBinaryProtocol.TBinaryProtocol(transport)
+    client = masterSvc.Client(protocol)
+    transport.open()
+
+    msg = client.dropTable(tableName)
+
+    transport.close()
+    return msg
 
 if __name__ == "__main__":
-    createTable()
+    createTable("test")
 
 
