@@ -25,7 +25,6 @@ private:
 	void init_block(blockNode & block);
 	void init_file(fileNode & file);
 	blockNode* getBlock(fileNode * file, blockNode* position, bool if_pin = false);
-	void writtenBackToDiskAll();
 	void writtenBackToDisk(const char* fileName, blockNode* block);
 	void clean_dirty(blockNode &block);
 	size_t getUsingSize(blockNode* block);
@@ -42,6 +41,7 @@ public:
 	void set_usingSize(blockNode & block, size_t usage);
 	size_t get_usingSize(blockNode & block);
 	char* get_content(blockNode& block);
+	void writtenBackToDiskAll();
 	static int getBlockSize() //Get the size of the block that others can use.Others cannot use the block head
 	{
 		return BLOCK_SIZE - sizeof(size_t);
