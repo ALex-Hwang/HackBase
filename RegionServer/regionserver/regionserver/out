@@ -1,0 +1,9 @@
+*******************welcome to use our minisql**********************
+***************** author: huang & liu & li & zhao *****************
+minisql>>num1 num2 str 
+1 2.200000 zhaoyang 
+1 2.200000 zhaoyang 
+1 2.200000 zhaoyang 
+3 records selected
+the duration is 1.0 milliseconds
+minisql>>

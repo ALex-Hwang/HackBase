@@ -1,0 +1,12 @@
+create table shit(num1 int,num2 float,str char(20));
+insert into shit values(1, 2.2, zhaoyang);
+drop table shit;
+create table shit(num1 int,num2 float,str char(20));
+insert into shit values(1, 2.2, zhaoyang);
+insert into shit values(1, 2.2, zhaoyang);
+create table fuck(num1 int,num2 float,str char(20));
+drop table fuck;
+insert into shit values(1, 2.2, zhaoyang);
+create table test(num1 int,num2 float,str char(20));
+insert into test values(1, 2.2, zhaoyang);
+drop table test;
