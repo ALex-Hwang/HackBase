@@ -68,14 +68,16 @@ def interpret(query):
     queryarr = query.split()
     res = None
     if type == MiniSQLType.CREATE_TABLE:
-        print(query)
         name = queryarr[2]
         name = name[:name.index("(")]
-        ip = createTable(name)
-        if ip == "error":
-            res = "error"
+        if existsTable(name):
+            print("There is a table "+name+" already")
         else:
-            res = command(ip, query)
+            ip = createTable(name)
+            if ip == "No more region server!":
+                res = "No more region server!"
+            else:
+                res = command(ip, query)
     elif type == MiniSQLType.CREATE_INDEX:
         name = queryarr[4]
         name = name[:name.index("(")]
@@ -93,7 +95,8 @@ def interpret(query):
         res = command(ip, query)
     elif type == MiniSQLType.DELETE:
         name = queryarr[2]
-        name = name[:name.index(";")]
+        if name[-1] == ';':
+            name = name[:name.index(";")]
         ip = whereTable(name)
         res = command(ip, query)
     elif type == MiniSQLType.DROP_INDEX:

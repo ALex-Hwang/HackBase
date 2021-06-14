@@ -1,6 +1,14 @@
 create table test(num1 int,num2 float,str char(20));
-insert into test values(1, 2.2, zhaoyang);
+insert into test values(2, 2.2, zhaoyang);
 create table hhh(num1 int,num2 float,str char(20));
 insert into hhh values(1, 2.2, zhaoyang);
 create table zzz(num1 int,num2 float,str char(20));
-insert into zzz values(1, 2.2, zhaoyang);
+insert into zzz values(2, 3.2, zhaoyang);
+
+create table test1(num1 int,num2 float,str char(20));
+insert into test1 values(1, 2.2, zhaoyang);
+create table hhh2(num1 int,num2 float,str char(20));
+insert into hhh2 values(1, 2.2, zhaoyang);
+create table zzz6(num1 int,num2 float,str char(20));
+insert into zzz6 values(2, 3.2, zhaoyang);
+

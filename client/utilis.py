@@ -42,14 +42,32 @@ def whereTable(tableName):
     for table in tables:
         if table == tableName:
             address, _ = zk.get("/MetaDataServer/"+table)
+            if address == b'404':
+                print('No region server available!')
+                return None
             address = address.decode('utf-8')
             address = address.split('_')[1]
             address = address.encode('utf-8')
+            zk.stop()
             return address
     print("no table called: "+tableName+" found")
     zk.stop()
     return None
 
+def existsTable(tableName):
+    zk = KazooClient(hosts=ZookeeperHost)
+    zk.start()
+
+    if not zk.exists("/MetaDataServer"):
+        zk.stop()
+        return False
+    tables = zk.get_children("/MetaDataServer")
+    for table in tables:
+        if table == tableName:
+            zk.stop()
+            return True
+    zk.stop()
+    return False
 
 # desciption: get the nodes in the root of the zookeeper
 # return all the nodes in the root directory of the zookeeper
