@@ -41,16 +41,20 @@ public class ZookeeperNode {
         setData("/RegionServerManager", String.valueOf(num + 1));
         createP(ServerInfoPath, userName + "@" + IP + PORT);
         createP(ServerInfoPath + "/path", LogPath);
-        createP(ServerInfoPath + "/tableNum", String.valueOf(count()));
+        createP(ServerInfoPath + "/tableNum", "0");
+        num = count();
+        setData(ServerInfoPath + "/tableNum", String.valueOf(num));
         createP(ServerInfoPath + "/tables", "");
     }
 
-    public static int count() {
+    public static int count() throws Exception {
         String basePath = "./";
         String[] list = new File(basePath).list();
         int num = 0;
         for (String s : list) {
             if (s.startsWith("TABLE_FILE")) {
+                String name = s.substring(11);
+                setData("MetaDataServer/" + name, IP + PORT);
                 num++;
             }
         }
