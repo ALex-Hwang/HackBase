@@ -50,10 +50,10 @@ public class Minisql {
         FileWriter fileWritter = new FileWriter(in.getName(), true);
         fileWritter.write("quit;\n");
         fileWritter.flush();
-
+        fileWritter.close();
         var process = processBuilder.start();
         var ret = process.waitFor();
-
+        in.delete();
         return;
     }
 

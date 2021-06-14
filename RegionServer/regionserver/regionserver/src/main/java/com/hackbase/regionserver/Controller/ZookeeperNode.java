@@ -35,9 +35,14 @@ public class ZookeeperNode {
 
     public static void connect() throws Exception {
         getZookeeper();
-        createE(RegionServerManagerPath, String.valueOf(count()));
+
+        createE(RegionServerManagerPath, "");
+        int num = Integer.valueOf(new String(getData("/RegionServerManager")));
+        setData("/RegionServerManager", String.valueOf(num + 1));
         createP(ServerInfoPath, userName + "@" + IP + PORT);
         createP(ServerInfoPath + "/path", LogPath);
+        createP(ServerInfoPath + "/tableNum", String.valueOf(count()));
+        createP(ServerInfoPath + "/tables", "");
     }
 
     public static int count() {
