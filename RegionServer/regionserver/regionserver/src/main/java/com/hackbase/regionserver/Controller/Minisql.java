@@ -53,7 +53,7 @@ public class Minisql {
 
         var process = processBuilder.start();
         var ret = process.waitFor();
-
+        in.delete();
         return;
     }
 
