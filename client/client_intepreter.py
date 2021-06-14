@@ -28,10 +28,10 @@ def execfile(file):
             line = line.strip()
             if line and line[-1] == ';':
                 try:
-                    print(query)
-                    # status = interpret(query)
-                    # if status == 1:
-                    #     break
+                    
+                    status = interpret(query)
+                    if status == 1:
+                        break
                 except MiniSQLError as e:
                     print('In line {}: {}'.format(i + 1, e))
                     break
@@ -115,14 +115,13 @@ def interpret(query):
         name = queryarr[1]
         name = name[:name.index(";")]
         execfile(name)
-    if res == None:
+    if res != None:
         print(res)
     return 0
 
 
 if __name__ == "__main__":
     query = ''
-    print("*******************welcome to use our minisql**********************")
     fileread = 0
     filerecovery = 0
     status = 0
