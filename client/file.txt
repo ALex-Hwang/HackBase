@@ -1,0 +1,6 @@
+create table test(num1 int,num2 float,str char(20));
+insert into test values(1, 2.2, zhaoyang);
+create table hhh(num1 int,num2 float,str char(20));
+insert into hhh values(1, 2.2, zhaoyang);
+create table zzz(num1 int,num2 float,str char(20));
+insert into zzz values(1, 2.2, zhaoyang);

@@ -42,6 +42,9 @@ def whereTable(tableName):
     for table in tables:
         if table == tableName:
             address, _ = zk.get("/MetaDataServer/"+table)
+            address = address.decode('utf-8')
+            address = address.split('_')[1]
+            address = address.encode('utf-8')
             return address
     print("no table called: "+tableName+" found")
     zk.stop()
@@ -95,8 +98,11 @@ def dropTable(tableName):
     client = masterSvc.Client(protocol)
     transport.open()
 
-    msg = client.deleteTable(tableName)
-
+    address = whereTable(tableName)
+    if address != None:
+        msg = client.deleteTable(tableName)
+    else:
+        msg = "error"
     transport.close()
     return msg
 
@@ -119,6 +125,5 @@ def command(address, command):
 
 
 if __name__ == "__main__":
-    print(command(1, 's'))
-
+    print("Debug")
 
